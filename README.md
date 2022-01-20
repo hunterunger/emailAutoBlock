@@ -8,7 +8,7 @@ Most email services don't have a way to completely block emails or configure aut
 Simply run this from the terminal get started:
 ```
 git clone https://github.com/hunterunger/emailAutoBlock.git
-cd emailBlockBot
+cd emailAutoBlock
 python3 main.py
 ```
 If you have 2FA enabled, you will need to generate an app-specific password from your mail account.
