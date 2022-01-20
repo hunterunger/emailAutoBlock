@@ -1,13 +1,13 @@
 ![Screenshot](screenshot.jpg)
 
-A very simple bot that deletes blocked emails and/or auto-replies.
+A very simple program that automatically deletes blocked emails and/or auto-replies.
 
 Most email services don't have a way to completely block emails or configure auto-replies. This bot can do that for you.
 
 ## ⏱ Quick Start
 Simply run this from the terminal get started:
 ```
-git clone https://github.com/hunterunger/emailBlockBot.git
+git clone https://github.com/hunterunger/emailAutoBlock.git
 cd emailBlockBot
 python3 main.py
 ```
