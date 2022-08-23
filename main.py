@@ -73,7 +73,7 @@ class EmailBlocker:
     
     def __init__(self):
         
-        # Load config
+        # Load config file or prompt user to set up config
         try:
             self.config = config()
         except FileNotFoundError:
@@ -159,6 +159,7 @@ class EmailBlocker:
             imap.login(self.config['username'], self.config['password'])
             
         except imaplib.IMAP4.error:
+            # error occurs when there is incorrect login information
             print('Login failed! Either the email, password, or IMAP server is wrong. \n'
                   'If you have 2FA enabled, you will have to generate an app-specific password from your account '
                   'settings.'
@@ -269,10 +270,11 @@ class EmailBlocker:
                         print(' Email replied to: ' + email_sender)
                     
                     if self.config['block_emails']:
-                        # delete the email from the server
+                        # mark email for deletion
                         imap.store(email_id, "+FLAGS", "\\Deleted")
                         print(' Original email deleted')
                         
+                        # finish removing email
                         imap.expunge()
         
         # close the mailbox
@@ -281,6 +283,7 @@ class EmailBlocker:
         imap.logout()
     
     def run_forever(self):
+        # check emails every x minutes forever
         while True:
             self.config = config()
             
@@ -289,6 +292,7 @@ class EmailBlocker:
             except TimeoutError:
                 print(Style.red + 'Network disconnected.' + Style.reset)
             
+            # get time interval from the config and print wait time
             sleep_time = sleep_time_until_checkpoint(self.config['update_interval'])
             print('\nSleeping for ' + str(sleep_time // 60) + ' minutes and ' + str(sleep_time % 60) + ' seconds')
             sleep(sleep_time)
@@ -299,6 +303,8 @@ if __name__ == '__main__':
     clear_console()
     bot = EmailBlocker()
     try:
+        # runs scheduled function on this line forever
         bot.run_forever()
     except KeyboardInterrupt:
+        # when control-c is pressed
         print('\n\nProgram has exited')
