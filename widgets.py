@@ -10,7 +10,6 @@ import datetime
 import json
 import os
 from time import sleep
-
 import yaml
 
 
@@ -78,6 +77,7 @@ def sleep_time_until_checkpoint(minute_break):
 
 
 def wait_indicator(time_to_wait):
+    # fun spinning loading indicator for terminal
     loading_icon = ['|', '/', '-', '\\']
     for i in range(time_to_wait * 5):
         print(' ' + loading_icon[i % 4] + ' ', end='\r', flush=True)
