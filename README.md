@@ -9,6 +9,7 @@ Simply run this from the terminal get started:
 ```
 git clone https://github.com/hunterunger/emailAutoBlock.git
 cd emailAutoBlock
+python3 -m pip install -r requirements.txt
 python3 main.py
 ```
 If you have 2FA enabled, you will need to generate an app-specific password from your mail account.
@@ -18,7 +19,6 @@ If you have 2FA enabled, you will need to generate an app-specific password from
 * Reply to blocked emails with fancy HTML (or delete the HTML file to only send plain text)
 * Archive blocked messages to a plain text file
 * Handles internet connection issues
-* No external dependencies
 * Work with any IMAP/SMTP mail account. 
 * Easy to use and customize
 
